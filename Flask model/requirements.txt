@@ -3,4 +3,5 @@ Werkzeug
 tensorflow
 numpy 
 Pillow
+gunicorn
 
