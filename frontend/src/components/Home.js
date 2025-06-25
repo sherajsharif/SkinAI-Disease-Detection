@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import './Home.css';
 
-const API_URL = 'http://localhost:5001/api/diseases';
+const API_URL = `${process.env.REACT_APP_API_URL}/api/diseases`;
 
 function Home() {
   const [diseases, setDiseases] = useState([]);
