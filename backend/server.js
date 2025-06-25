@@ -82,7 +82,34 @@ app.post('/api/predict', upload.single('file'), async (req, res) => {
         });
     }
 });
+// For parsing JSON bodies in POST requests
+app.use(express.json());
 
+// In-memory user store (for demo only; use a real database in production)
+const users = [];
+
+// Signup endpoint
+app.post('/signup', (req, res) => {
+    const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+        return res.status(400).json({ error: 'All fields are required' });
+    }
+    if (users.find(u => u.username === username || u.email === email)) {
+        return res.status(400).json({ error: 'User already exists' });
+    }
+    users.push({ username, email, password });
+    res.json({ message: 'Signup successful', user: { username, email } });
+});
+
+// Login endpoint
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    const user = users.find(u => u.username === username && u.password === password);
+    if (!user) {
+        return res.status(401).json({ error: 'Invalid credentials' });
+    }
+    res.json({ message: 'Login successful', user: { username: user.username, email: user.email } });
+});
 app.listen(PORT, () => {
     console.log(`Node.js backend running on http://localhost:${PORT}`);
 }); 
