@@ -5,7 +5,7 @@ import diseases from '../data/diseases';
 import './AIEngine.css';
 import { useNavigate } from 'react-router-dom';
 
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001/predict';
+const API_URL = `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/predict`;
 
 function AIEngine() {
   const [selectedFile, setSelectedFile] = useState(null);
