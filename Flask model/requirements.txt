@@ -9,4 +9,8 @@ tensorflow-cpu
 numpy
 pandas
 openpyxl
-
+scikit-learn
+requests
+matplotlib
+joblib
+opencv-python
