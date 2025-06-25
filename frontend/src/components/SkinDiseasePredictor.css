@@ -1,0 +1,424 @@
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --success-color: #4cc9f0;
+  --warning-color: #f72585;
+  --light-bg: #f8f9fa;
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+body, .container {
+  background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);
+  min-height: 100vh;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+}
+
+.container {
+  padding: 2rem 1rem;
+}
+
+.app-header {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.app-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #4f8cff;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.app-subtitle {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.main-card {
+  background: rgba(255,255,255,0.7);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.12);
+  padding: 2.5rem 2rem;
+  margin: 0 auto 2rem auto;
+  max-width: 700px;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 1s;
+}
+
+.upload-section {
+  padding: 2rem;
+  text-align: center;
+}
+
+.upload-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.upload-zone {
+  border: 2px dashed #b6c6e6;
+  border-radius: 16px;
+  background: rgba(240,245,255,0.5);
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s;
+}
+
+.upload-zone.dragging {
+  border-color: #4f8cff;
+  background: #e0e7ff;
+}
+
+.upload-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.option-button {
+  background: #f4f8ff;
+  border: 1.5px solid #b6c6e6;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  color: #2563eb;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.06);
+}
+
+.option-button:hover {
+  background: #e0e7ff;
+  color: #4f8cff;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  border: none;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.9rem 0;
+  margin-top: 1rem;
+  box-shadow: 0 4px 16px rgba(60,60,120,0.10);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #38e6b0 0%, #4f8cff 100%);
+}
+
+.preview-section {
+  position: relative;
+  margin: 1.5rem 0;
+}
+
+.img-preview {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.camera-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 41, 59, 0.7);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s;
+  backdrop-filter: blur(6px);
+}
+
+.camera-container {
+  background: rgba(255,255,255,0.15);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.18);
+  padding: 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 350px;
+  max-width: 95vw;
+  animation: fadeIn 0.7s;
+  backdrop-filter: blur(8px);
+}
+
+.camera-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.camera-header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.close-button {
+  background: transparent;
+  border: none;
+  color: #ff4d4f;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-button:hover {
+  color: #fff;
+  background: #ff4d4f;
+  border-radius: 50%;
+}
+
+.camera-instructions {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+}
+
+.camera-instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.camera-instructions li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.camera-instructions li:before {
+  content: "•";
+  color: var(--success-color);
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.camera-view {
+  position: relative;
+  margin: 1.5rem 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 4px 32px rgba(60,60,120,0.18);
+}
+
+.camera-feed {
+  width: 420px;
+  max-width: 80vw;
+  border-radius: 18px;
+  border: 4px solid transparent;
+  box-shadow: 0 2px 16px rgba(60,60,120,0.12);
+  animation: cameraBorderGlow 2s infinite alternate;
+  background: #000;
+}
+
+@keyframes cameraBorderGlow {
+  0% {
+    border-color: #4f8cff;
+    box-shadow: 0 0 16px #4f8cff44, 0 2px 16px rgba(60,60,120,0.12);
+  }
+  100% {
+    border-color: #38e6b0;
+    box-shadow: 0 0 32px #38e6b088, 0 2px 16px rgba(60,60,120,0.12);
+  }
+}
+
+.camera-button.capture-button {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  border: none;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  color: #fff;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(60,60,120,0.18);
+  margin: 0 auto;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+  outline: none;
+}
+
+.camera-button.capture-button:active {
+  transform: scale(0.95);
+}
+
+.camera-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.5rem;
+}
+
+.result-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 2rem;
+  box-shadow: var(--card-shadow);
+  animation: slideUpFade 0.6s ease-out;
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.result-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--success-color);
+}
+
+.confidence-bar {
+  height: 12px;
+  border-radius: 6px;
+  background: #e9ecef;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.confidence-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--success-color) 0%, var(--primary-color) 100%);
+  transition: width 0.6s ease;
+}
+
+.upload-guidelines {
+  background: rgba(67, 97, 238, 0.05);
+  border: 1px solid rgba(67, 97, 238, 0.1);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.guidelines-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--primary-color);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.guidelines-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.guidelines-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+  color: #666;
+}
+
+.guidelines-list li::before {
+  content: "✓";
+  color: var(--success-color);
+  font-weight: bold;
+}
+
+.alert {
+  border: none;
+  border-radius: 12px;
+  padding: 1.2rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.alert-warning {
+  background: rgba(247, 37, 133, 0.1);
+  color: var(--warning-color);
+}
+
+.alert-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .upload-options {
+    flex-direction: column;
+  }
+  
+  .option-button {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .camera-container {
+    padding: 15px;
+  }
+
+  .camera-header h3 {
+    font-size: 20px;
+  }
+
+  .camera-instructions {
+    padding: 12px 15px;
+  }
+
+  .camera-instructions li {
+    font-size: 13px;
+  }
+
+  .capture-button {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

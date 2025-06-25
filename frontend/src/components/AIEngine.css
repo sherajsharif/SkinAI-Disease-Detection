@@ -1,0 +1,576 @@
+.ai-bg {
+  /* min-height: 100vh; */
+  background: linear-gradient(135deg, #d1fae5 0%, #f0fdf4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+.ai-card {
+  background: rgba(255,255,255,0.85);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(60,120,60,0.12);
+  padding: 2.5rem 2rem;
+  max-width: 480px;
+  width: 100%;
+  margin: 2rem auto;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 1s;
+  padding-top: 32px;
+}
+
+.ai-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: 1.5rem;
+}
+
+.ai-upload-zone {
+  border: 2px dashed #bbf7d0;
+  border-radius: 16px;
+  background: rgba(240,245,255,0.5);
+  padding: 2rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  transition: border-color 0.3s;
+}
+
+.ai-upload-options {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.ai-option-button {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  border: none;
+  border-radius: 9px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.98rem;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  outline: none;
+  border: 2px solid #e0e7ff;
+  letter-spacing: 0.1px;
+}
+.ai-option-button:hover {
+  background: linear-gradient(90deg, #38e6b0 0%, #4f8cff 100%);
+  color: #fff;
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px #4ade80cc;
+}
+
+.ai-option-button span[role="img"] {
+  font-size: 1.1rem;
+  margin-right: 0.1rem;
+}
+
+.ai-img-preview {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  background: #e0f2fe;
+}
+
+.ai-detect-btn {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(60,60,120,0.10);
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+.ai-result-card {
+  background: linear-gradient(135deg, #e0e7ff 0%, #fff 100%);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.12);
+  padding: 2rem;
+  margin-top: 2rem;
+  transition: box-shadow 0.3s;
+  animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+.confidence-bar-outer {
+  background: #e0e7ff;
+  border-radius: 12px;
+  height: 32px;
+  width: 100%;
+  margin-top: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.08);
+}
+
+.confidence-bar-inner {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  height: 100%;
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 1rem;
+  border-radius: 12px 0 0 12px;
+  box-shadow: 0 2px 8px rgba(60,60,120,0.08);
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+.animated-fade-in {
+  animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Add the .disease-info, .medicine-section, etc. from previous steps for full result card styling */
+
+/* Layout for prediction page */
+.ai-predict-layout {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.ai-info-card {
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #bbf7d0cc;
+  padding: 2rem 1.5rem;
+  width: 270px;
+  min-width: 220px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 1rem;
+  color: #166534;
+  animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+  border: 1.5px solid #bbf7d0;
+}
+.ai-info-left {
+  margin-right: 0.5rem;
+  background: linear-gradient(135deg, #e0f7fa 0%, #e0ffe0 100%);
+  border-left: 5px solid #4ade80;
+}
+.ai-info-right {
+  margin-left: 0.5rem;
+  background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+  border-right: 5px solid #4f8cff;
+}
+.ai-info-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+.ai-info-card ul {
+  padding-left: 1.2rem;
+  margin-bottom: 1rem;
+}
+.ai-more-info-btn {
+  background: #4f8cff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.2rem;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 0.7rem;
+  transition: background 0.2s;
+}
+.ai-more-info-btn:hover {
+  background: #38e6b0;
+}
+
+.ai-center-card {
+  flex: 1 1 350px;
+  min-width: 320px;
+  max-width: 420px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.13);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #e0e7ff;
+}
+
+/* Camera button styles */
+.ai-camera-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  background: linear-gradient(90deg, #38e6b0 0%, #4f8cff 100%);
+  color: #fff;
+  font-weight: 700;
+  border: 2px solid #e0e7ff;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1.2rem;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  cursor: pointer;
+  margin: 0.3rem 0 0.7rem 0;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+.ai-camera-btn:hover {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  box-shadow: 0 4px 16px #4ade80cc;
+  transform: scale(1.07);
+}
+
+/* Camera icon for button */
+.ai-camera-btn svg {
+  width: 28px;
+  height: 28px;
+  vertical-align: middle;
+}
+
+/* Result layout */
+.ai-result-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  margin-top: 2rem;
+  justify-content: space-between;
+}
+.ai-result-main {
+  flex: 2 1 340px;
+  min-width: 300px;
+  max-width: 500px;
+}
+.disease-info-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  background: #e0f2fe;
+}
+.disease-info-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: 0.5rem;
+}
+.disease-info-desc {
+  font-size: 1.05rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.disease-info-steps ul {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+}
+.disease-info-steps li {
+  color: #2563eb;
+  margin-bottom: 0.3rem;
+}
+
+.medicine-section {
+  flex: 1 1 260px;
+  min-width: 220px;
+  max-width: 320px;
+  background: #f0fdf4;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #bbf7d0cc;
+  padding: 1.2rem 1rem 1.5rem 1rem;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.medicine-section h5 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #166534;
+  margin-bottom: 1rem;
+}
+.medicine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+  width: 100%;
+}
+.medicine-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  padding: 0.8rem 0.7rem 1rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1.5px solid #bbf7d0;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+.medicine-card:hover {
+  box-shadow: 0 8px 32px #4ade80cc, 0 4px 24px rgba(60,120,60,0.18);
+  transform: translateY(-4px) scale(1.03);
+  border-color: #4ade80;
+}
+.medicine-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.7rem;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  background: #e0f2fe;
+}
+.medicine-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #166534;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+.medicine-link {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  padding: 0.3rem 0.8rem;
+  text-decoration: none;
+  margin-top: 0.4rem;
+  transition: background 0.2s, color 0.2s;
+  display: inline-block;
+  font-size: 0.98rem;
+}
+.medicine-link:hover {
+  background: linear-gradient(90deg, #38e6b0 0%, #4f8cff 100%);
+  color: #fff;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1100px) {
+  .ai-predict-layout {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  .ai-info-card, .ai-center-card {
+    max-width: 100%;
+    width: 100%;
+  }
+  .ai-result-layout {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .medicine-section {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+.camera-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(30, 41, 59, 0.55);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.5s;
+  backdrop-filter: blur(4px);
+}
+
+.camera-container {
+  background: rgba(255,255,255,0.97);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(60,60,120,0.18);
+  padding: 1.5rem 1.5rem 1.2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 260px;
+  max-width: 350px;
+  width: 100%;
+  animation: fadeIn 0.7s;
+  backdrop-filter: blur(6px);
+}
+
+.camera-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.7rem;
+}
+
+.camera-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+.close-button {
+  background: #f4f8ff;
+  border: none;
+  color: #ff4d4f;
+  font-size: 1.5rem;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.close-button:hover {
+  background: #ff4d4f;
+  color: #fff;
+}
+
+.camera-instructions {
+  background: #e0f7fa;
+  border-radius: 10px;
+  padding: 10px 16px;
+  margin-bottom: 12px;
+  color: #166534;
+  font-size: 0.98rem;
+  width: 100%;
+  text-align: center;
+}
+
+.camera-instructions ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.camera-instructions li {
+  margin-bottom: 4px;
+  font-size: 0.98rem;
+}
+
+.camera-view {
+  position: relative;
+  margin: 1rem 0 1.2rem 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(60,60,120,0.13);
+  background: #000;
+}
+
+.camera-feed {
+  width: 320px;
+  max-width: 80vw;
+  border-radius: 16px;
+  border: 4px solid #e0e7ff;
+  box-shadow: 0 2px 16px rgba(60,60,120,0.12);
+  background: #000;
+}
+
+.camera-controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.camera-button.capture-button {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  border: none;
+  border-radius: 50%;
+  width: 54px;
+  height: 54px;
+  color: #fff;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  margin: 0 auto;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+  outline: none;
+}
+.camera-button.capture-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  .camera-container {
+    min-width: 0;
+    max-width: 98vw;
+    padding: 1rem 0.5rem;
+  }
+  .camera-feed {
+    width: 98vw;
+    max-width: 98vw;
+  }
+}
+
+.btn-primary, .ai-detect-btn {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  border: none;
+  border-radius: 10px;
+  font-size: 1.03rem;
+  font-weight: 700;
+  padding: 0.7rem 0;
+  margin-top: 0.8rem;
+  box-shadow: 0 4px 16px rgba(60,60,120,0.13);
+  transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+  letter-spacing: 0.2px;
+  color: #fff;
+  text-shadow: 0 1px 2px #2563eb22;
+}
+.btn-primary:hover, .ai-detect-btn:hover {
+  background: linear-gradient(90deg, #38e6b0 0%, #4f8cff 100%);
+  box-shadow: 0 8px 32px #4ade80cc;
+  transform: scale(1.03);
+}
+
+/* Beautiful logout button with arrow */
+.btn-logout-arrow {
+  background: linear-gradient(90deg, #4f8cff 0%, #38e6b0 100%);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 7px;
+  padding: 0.38rem 1.1rem 0.38rem 0.9rem;
+  font-size: 0.98rem;
+  margin-left: 1.1rem;
+  box-shadow: 0 2px 8px #bbf7d0cc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.1s;
+  letter-spacing: 0.1px;
+  text-shadow: 0 1px 2px #2563eb22;
+}
+.btn-logout-arrow:hover {
+  background: linear-gradient(90deg, #38e6b0 0%, #4f8cff 100%);
+  color: #fff;
+  box-shadow: 0 4px 16px #4ade80cc;
+  transform: scale(1.06);
+}
+.btn-logout-arrow svg {
+  width: 18px;
+  height: 18px;
+  vertical-align: middle;
+  margin-left: 0.1rem;
+}

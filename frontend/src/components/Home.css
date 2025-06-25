@@ -1,0 +1,103 @@
+.home-bg {
+    /* min-height: 100vh; */
+    background: linear-gradient(135deg, #d1fae5 0%, #f0fdf4 100%);
+    padding-bottom: 3rem;
+    padding-top: 0;
+  }
+  
+  .home-header {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    padding-top: 32px;
+  }
+  
+  .home-title {
+    font-size: 2.7rem;
+    font-weight: 700;
+    color: #166534;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .home-subtitle {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 1.5rem;
+  }
+  
+  .disease-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .disease-card {
+    background: rgba(255,255,255,0.92);
+    border-radius: 22px;
+    box-shadow: 0 4px 24px rgba(60,120,60,0.10);
+    padding: 2rem 1.2rem 2.2rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s, transform 0.2s;
+    border: 2px solid #bbf7d0;
+    animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  
+  .disease-card:hover {
+    box-shadow: 0 8px 32px #4ade80cc, 0 4px 24px rgba(60,120,60,0.18);
+    transform: translateY(-8px) scale(1.06);
+    border-color: #4ade80;
+  }
+  
+  .disease-img {
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 1.2rem;
+    box-shadow: 0 2px 8px #bbf7d0cc;
+    background: #e0f2fe;
+  }
+  
+  .disease-name {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #166534;
+    text-align: center;
+    margin-top: 0.7rem;
+  }
+  
+  .animated-fade-in {
+    animation: fadeIn 0.7s cubic-bezier(0.4,0,0.2,1);
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px);}
+    to { opacity: 1; transform: translateY(0);}
+  }
+  
+  @media (max-width: 1200px) {
+    .disease-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 900px) {
+    .disease-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 600px) {
+    .disease-grid {
+      grid-template-columns: 1fr;
+    }
+    .disease-img {
+      width: 100px;
+      height: 100px;
+    }
+  }
