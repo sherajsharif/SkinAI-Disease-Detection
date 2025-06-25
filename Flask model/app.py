@@ -185,6 +185,7 @@ CLASS_NAMES = [
 
 @app.route('/predict', methods=['POST'])
 def predict():
+    logger.info("Starting prediction route")
     if 'file' not in request.files:
         logger.error("No file part in request")
         return jsonify({'error': 'No file provided'}), 400
@@ -228,14 +229,16 @@ def predict():
         logger.info("Image preprocessed successfully")
         
         # Make prediction
+        logger.info("About to predict")
         preds = model.predict(x)
+        logger.info(f"Prediction output: {preds}")
         logger.info("Prediction made successfully")
         
         pred_class_idx = int(np.argmax(preds, axis=1)[0])
         confidence = float(np.max(preds))
         
         # Increased confidence threshold to 70%
-        if confidence < 0.7:  # Increased from 0.5 to 0.7
+        if confidence < 0.7:
             return jsonify({
                 'error': 'Unable to detect a skin disease with sufficient confidence',
                 'confidence': confidence
