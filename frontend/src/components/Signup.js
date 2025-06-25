@@ -20,7 +20,7 @@ function Signup() {
         setSuccess(false);
 
         try {
-            await axios.post(API_URL, { username, email, password });
+            await axios.post(SIGNUP_URL, { username, email, password });
             setSuccess(true);
             setTimeout(() => {
                 navigate('/login');
