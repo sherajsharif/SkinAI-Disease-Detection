@@ -3,4 +3,4 @@ Werkzeug
 tensorflow
 numpy 
 Pillow
-python_version == "3.10"
+
