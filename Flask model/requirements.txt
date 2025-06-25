@@ -1,7 +1,12 @@
 Flask
 Werkzeug
-tensorflow
 numpy 
 Pillow
 gunicorn
+flask_cors
+gunicorn
+tensorflow-cpu
+numpy
+pandas
+openpyxl
 
