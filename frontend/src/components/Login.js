@@ -4,6 +4,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Auth.css';
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5001';
+  const LOGIN_URL = `${API_BASE_URL}/login`;
 
 function Login() {
     const [username, setUsername] = useState('');
