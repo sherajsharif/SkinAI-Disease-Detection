@@ -17,7 +17,7 @@ function Login() {
         setError(null);
 
         try {
-            const response = await axios.post(API_URL, { username, password });
+            const response = await axios.post(LOGIN_URL, { username, password });
             // Save user info to localStorage for authentication
             localStorage.setItem('user', JSON.stringify(response.data.user));
             navigate('/'); // Redirect to the main page after login
