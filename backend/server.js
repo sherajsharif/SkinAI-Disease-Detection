@@ -1,3 +1,4 @@
+const FLASK_API_URL = process.env.FLASK_API_URL || 'http://localhost:5001';
 const express = require('express');
 const cors = require('cors');
 const multer = require('multer');
@@ -7,7 +8,7 @@ const fs = require('fs');
 const FormData = require('form-data');
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Enable CORS
 app.use(cors());
@@ -50,13 +51,13 @@ app.post('/api/predict', upload.single('file'), async (req, res) => {
         console.log('Sending request to Flask API...');
         
         // Send to Flask API
-        const response = await axios.post('http://192.168.187.65:5001/predict', formData, {
-            headers: {
-                ...formData.getHeaders(),
-            },
-            maxContentLength: Infinity,
-            maxBodyLength: Infinity
-        });
+        const response = await axios.post(`${FLASK_API_URL}/predict`, formData, {
+    headers: {
+        ...formData.getHeaders(),
+    },
+    maxContentLength: Infinity,
+    maxBodyLength: Infinity
+     });
 
         console.log('Received response from Flask API:', response.data);
 
