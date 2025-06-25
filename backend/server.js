@@ -110,6 +110,17 @@ app.post('/login', (req, res) => {
     }
     res.json({ message: 'Login successful', user: { username: user.username, email: user.email } });
 });
+
+app.get('/api/diseases', async (req, res) => {
+    try {
+        const response = await axios.get(`${FLASK_API_URL}/api/diseases`);
+        res.json(response.data);
+    } catch (error) {
+        console.error('Error fetching diseases:', error.message);
+        res.status(500).json({ error: 'Failed to fetch diseases' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Node.js backend running on http://localhost:${PORT}`);
 }); 
