@@ -3,7 +3,8 @@ import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './Auth.css';
 
-const API_URL = 'http://localhost:5001/signup';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const SIGNUP_URL = `${API_BASE_URL}/signup`;
 
 function Signup() {
     const [username, setUsername] = useState('');
