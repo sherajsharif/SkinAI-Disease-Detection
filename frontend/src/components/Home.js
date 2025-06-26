@@ -1,43 +1,30 @@
-import React, { useState } from 'react';
-import medicines from '../data/medicines';
-import './Medicine.css';
+import React, { useRef } from 'react';
+import diseases from '../data/diseases';
+import './Home.css';
 
-function Medicine() {
-  const [filter, setFilter] = useState('');
+function Home() {
+  const aiEngineRef = useRef(null);
 
-  // Get unique disease names for filter dropdown
-  const diseaseOptions = Array.from(new Set(medicines.map(m => m['Disease Name'])));
-
-  const filtered = filter
-    ? medicines.filter(m => m['Disease Name'] === filter)
-    : medicines;
+  const handleCardClick = (disease) => {
+    // Scroll to AI Engine section if present
+    const aiSection = document.getElementById('ai-engine-section');
+    if (aiSection) {
+      aiSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    // Optionally highlight or set selected disease
+  };
 
   return (
-    <div className="medicine-bg">
-      <div className="medicine-header">
-        <h1 className="medicine-title">Supplements <span role="img" aria-label="pill">💊</span></h1>
-        <p className="medicine-subtitle">Buy supplements & medicine for skin diseases at one place</p>
-        <div className="medicine-filter">
-          <label htmlFor="disease-filter">Filter by Disease:</label>
-          <select
-            id="disease-filter"
-            value={filter}
-            onChange={e => setFilter(e.target.value)}
-          >
-            <option value="">All</option>
-            {diseaseOptions.map((d, idx) => (
-              <option value={d} key={idx}>{d}</option>
-            ))}
-          </select>
-        </div>
+    <div className="home-bg">
+      <div className="home-header">
+        <h1 className="home-title">Skin Disease Detection</h1>
+        <p className="home-subtitle">This AI Engine will help to detect disease from the following skin conditions</p>
       </div>
-      <div className="medicine-grid">
-        {filtered.map((med, idx) => (
-          <div className="medicine-card animated-fade-in" key={idx}>
-            <img src={med['Medicine Image']} alt={med['Medicine Name']} className="medicine-img" />
-            <div className="medicine-name">{med['Medicine Name']}</div>
-            <div className="medicine-disease">For: {med['Disease Name']}</div>
-            <a href={med['Buy Link']} target="_blank" rel="noopener noreferrer" className="medicine-link">Buy/Info</a>
+      <div className="disease-grid">
+        {diseases.map((disease, idx) => (
+          <div className="disease-card animated-fade-in" key={idx} onClick={() => handleCardClick(disease)}>
+            <img src={disease.image} alt={disease.name} className="disease-img" />
+            <div className="disease-name">{disease.name.replace(/^[A-Z]+-\s*/, '')}</div>
           </div>
         ))}
       </div>
@@ -45,4 +32,4 @@ function Medicine() {
   );
 }
 
-export default Medicine; 
+export default Home; 
